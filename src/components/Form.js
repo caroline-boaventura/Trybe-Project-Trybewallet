@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchApi } from '../actions';
+import EditExpenseForm from './EditExpenseForm';
+import './Form.css';
 
 class Form extends React.Component {
   constructor() {
@@ -14,9 +16,9 @@ class Form extends React.Component {
       expenses: {
         value: '',
         description: '',
-        currency: '',
-        method: '',
-        tag: '',
+        currency: 'USD',
+        method: 'Dinheiro',
+        tag: 'Alimentação',
       },
       apiResponse: [],
     };
@@ -72,6 +74,8 @@ class Form extends React.Component {
           id="value"
           value={ value }
           onChange={ this.handleChange }
+          className="form-control"
+          autoComplete="off"
         />
       </label>
     );
@@ -89,6 +93,8 @@ class Form extends React.Component {
           id="description"
           value={ description }
           onChange={ this.handleChange }
+          className="form-control"
+          autoComplete="off"
         />
       </label>
     );
@@ -105,6 +111,7 @@ class Form extends React.Component {
           id="currency"
           value={ currency }
           onChange={ this.handleChange }
+          className="form-control"
         >
           { this.filterCurrency()
             .map((option, index) => (
@@ -115,7 +122,7 @@ class Form extends React.Component {
   }
 
   labelPayment() {
-    const { expenses: { payment } } = this.state;
+    const { expenses: { method } } = this.state;
 
     return (
       <label htmlFor="payment">
@@ -123,8 +130,9 @@ class Form extends React.Component {
         <select
           name="method"
           id="payment"
-          value={ payment }
+          value={ method }
           onChange={ this.handleChange }
+          className="form-control"
         >
           <option value="Dinheiro">Dinheiro</option>
           <option value="Cartão de crédito">Cartão de crédito</option>
@@ -140,7 +148,13 @@ class Form extends React.Component {
     return (
       <label htmlFor="tag">
         Tag
-        <select name="tag" id="tag" value={ tag } onChange={ this.handleChange }>
+        <select
+          name="tag"
+          id="tag"
+          value={ tag }
+          onChange={ this.handleChange }
+          className="form-control"
+        >
           <option value="Alimentação">Alimentação</option>
           <option value="Lazer">Lazer</option>
           <option value="Trabalho">Trabalho</option>
@@ -153,11 +167,10 @@ class Form extends React.Component {
   // ==================================================
 
   render() {
-    const { fetchApiWallet } = this.props;
+    const { fetchApiWallet, editor } = this.props;
     const { expenses } = this.state;
-
-    return (
-      <form>
+    const Teste = (
+      <form className="form-container">
         { this.labelValue() }
         { this.labelDescription() }
         { this.labelCurrency() }
@@ -167,10 +180,15 @@ class Form extends React.Component {
         <button
           type="button"
           onClick={ () => fetchApiWallet(expenses) }
+          className="btn btn-light button"
         >
           Adicionar despesa
         </button>
       </form>
+    );
+
+    return (
+      (editor) ? <EditExpenseForm /> : Teste
     );
   }
 }
@@ -179,8 +197,13 @@ const mapDispatchToProps = (dispatch) => ({
   fetchApiWallet: (state) => dispatch(fetchApi(state)),
 });
 
-Form.propTypes = ({
-  fetchApiWallet: PropTypes.func.isRequired,
+const mapStateToProps = (state) => ({
+  editor: state.wallet.editor,
 });
 
-export default connect(null, mapDispatchToProps)(Form);
+Form.propTypes = ({
+  fetchApiWallet: PropTypes.func.isRequired,
+  editor: PropTypes.bool.isRequired,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap') ;
+
+.table {
+  border: 1px solid #822748;
+}
+
+.header-table {
+  height: 50px;
+  text-align: center;
+  background-color: #822748;
+  color: white;
+  font-family: Montserrat, sans-serif;
+}
+
+th, td {
+  border: 1px solid #822748;
+  height: 50px;
+  text-align: center;
+}
+
+.button-edit-delete {
+  border: none
+}

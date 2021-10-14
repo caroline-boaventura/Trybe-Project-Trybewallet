@@ -1,0 +1,26 @@
+.form-container-edit {
+  background-color: #fff;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #822748;
+  margin-bottom: 50px;
+  border: 2px solid #822748;
+}
+
+.button-edit {
+    height: 50px;
+    background-color: #822748;
+    color: white;
+}
+
+.input-control:focus {
+  border: 0 none;
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
+
+.input-control {
+  border: 1px solid #822748;
+}

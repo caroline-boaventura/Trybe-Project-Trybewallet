@@ -1,0 +1,15 @@
+.form-container {
+  background-color: #822748;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+  margin-bottom: 50px;
+}
+
+.button {
+  height: 50px;
+  color: #822748;
+}
+ 

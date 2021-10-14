@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { userAction } from '../actions';
 import digitalWallet from '../images/digitalWallet.jpg';
+// import logoCor from '../images/logo_cor.jpg';
+// import logo_semcor from '../images/logo_semcor.jpg';
 import './Login.css';
 
 class Login extends React.Component {
@@ -54,7 +56,6 @@ class Login extends React.Component {
           <img src={ digitalWallet } alt="carteira" />
         </div>
         <div>
-          <div className="trybe-wallet">trybeWallet</div>
           <fieldset className="fieldset">
             <p>E-mail</p>
             <input
@@ -65,12 +66,13 @@ class Login extends React.Component {
               value={ email }
               onChange={ this.handleChange }
               className="form-control"
+              autoComplete="off"
             />
 
             <p>Senha</p>
             <input
               data-testid="password-input"
-              type="text"
+              type="password"
               placeholder="Digite sua senha"
               name="senha"
               value={ senha }

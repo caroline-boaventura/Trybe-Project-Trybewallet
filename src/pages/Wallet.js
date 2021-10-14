@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Expenses from '../components/Expenses';
+// import logo from '../images/logo.jpg';
+import logoWhite from '../images/logoWhite.jpg';
+import './Wallet.css';
 
 class Wallet extends React.Component {
   totalValueExpenses() {
@@ -30,10 +33,15 @@ class Wallet extends React.Component {
 
     return (
       <>
-        <header>
-          <div data-testid="email-field">{ email }</div>
-          <div data-testid="total-field">{ this.totalValueExpenses() }</div>
-          <div data-testid="header-currency-field">BRL</div>
+        <header className="container-header">
+          <div className="logo">
+            <img src={ logoWhite } alt="logo" />
+          </div>
+          <div className="currency-field">
+            <div data-testid="total-field">{ this.totalValueExpenses() }</div>
+            <div data-testid="header-currency-field">BRL</div>
+            <div data-testid="email-field">{ email }</div>
+          </div>
         </header>
         <Form />
         <Expenses />

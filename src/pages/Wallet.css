@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap') ;
+
+.container-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: #822748; */
+  height: 120px;
+}
+
+.logo img {
+  width: 200px;
+  margin-left: 80px;
+}
+
+.currency-field {
+  margin-right: 80px;
+  font-family: Montserrat, sans-serif;
+  font-size: 20px;
+  color: #822748;
+}

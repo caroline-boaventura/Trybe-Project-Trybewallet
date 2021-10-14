@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { deleteExpense } from '../actions';
+import { deleteExpense, editButton } from '../actions';
+import './Expenses.css';
 
 class Expenses extends React.Component {
   buttonDelete(id) {
@@ -12,22 +13,27 @@ class Expenses extends React.Component {
     deleteExpenseButton(filteredExpenses);
   }
 
-  render() {
-    const { expenses } = this.props;
-
+  tableHeader() {
     return (
-      <table>
-        <tr>
-          <th>Descrição</th>
-          <th>Tag</th>
-          <th>Método de pagamento</th>
-          <th>Valor</th>
-          <th>Moeda</th>
-          <th>Câmbio utilizado</th>
-          <th>Valor convertido</th>
-          <th>Moeda de conversão</th>
-          <th>Editar/Excluir</th>
-        </tr>
+      <tr className="header-table">
+        <th>Descrição</th>
+        <th>Tag</th>
+        <th>Método de pagamento</th>
+        <th>Valor</th>
+        <th>Moeda</th>
+        <th>Câmbio utilizado</th>
+        <th>Valor convertido</th>
+        <th>Moeda de conversão</th>
+        <th>Editar/Excluir</th>
+      </tr>
+    );
+  }
+
+  render() {
+    const { expenses, editButtonExpense } = this.props;
+    return (
+      <table className="table">
+        {this.tableHeader()}
         {expenses.map((expense) => {
           const currencyExpense = expense.currency;
           const exchangeRatesObj = expense.exchangeRates[currencyExpense];
@@ -46,13 +52,21 @@ class Expenses extends React.Component {
               <td>{ convertedValue }</td>
               <td>Real</td>
               <td>
-                <button type="button" data-testid="edit-btn">Edit</button>
                 <button
+                  className="button-edit-delete"
+                  type="button"
+                  data-testid="edit-btn"
+                  onClick={ () => editButtonExpense(expense.id) }
+                >
+                  <i className="far fa-edit" />
+                </button>
+                <button
+                  className="button-edit-delete"
                   type="button"
                   data-testid="delete-btn"
                   onClick={ () => this.buttonDelete(expense.id) }
                 >
-                  Excluir
+                  <i className="far fa-trash-alt" />
                 </button>
               </td>
 
@@ -66,6 +80,7 @@ class Expenses extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   deleteExpenseButton: (expenses) => dispatch(deleteExpense(expenses)),
+  editButtonExpense: (id) => dispatch(editButton(id)),
 });
 
 const mapStateToProps = (state) => ({
@@ -75,6 +90,7 @@ const mapStateToProps = (state) => ({
 Expenses.propTypes = ({
   expenses: PropTypes.arrayOf().isRequired,
   deleteExpenseButton: PropTypes.func.isRequired,
+  editButtonExpense: PropTypes.func.isRequired,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Expenses);
