@@ -9,3 +9,13 @@ A aplicação é uma carteira digital de controle de gastos com um conversor do 
 - Adicionar, remover e editar um gasto;
 - Visualizar uma tabela com seus gastos;
 - Visualizar o total de gastos convertidos para uma moeda de escolha.
+
+## Aplicação
+![Exemplo da página de login](Login.jpeg);
+![Exemplo da tabela de gastos](Tabela_de_Gastos.jpeg)
+
+## Instalando as dependências
+`npm install`
+
+## Inicializando a aplicação
+`npm start`
