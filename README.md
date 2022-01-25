@@ -12,7 +12,7 @@ A aplicação é uma carteira digital de controle de gastos com um conversor do 
 
 ## Aplicação
 
-[**Deploy**](https://trybewallet.herokuapp.com/)
+Deploy: https://trybewallet.herokuapp.com/
 
 ![Exemplo da página de login](Login.jpeg)
 ![Exemplo da tabela de gastos](Tabela_de_Gastos.jpeg)
